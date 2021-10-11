@@ -1,0 +1,247 @@
+Introduction:
+------------------------------------------------------
+Concept:
+Array:Indexed collection of fixed no of homogeneous data elements.
+
+
+advantages:
+1.we can represent huge no.of value by using single variable.(readability increased.)
+
+disadvantages:
+1.fixed size
+2.hold only homogeneous data elements
+
+Declaration:
+-------------------------------------------------------
+we can declare array by using follwing way:
+1.) int[] arr; //Recommended way of declaration becouse name is clearly separated from type.
+2.) int  []arr;
+3.) int  arr[];
+
+Declaration and creation:
+int[] arr=new int[10];//size gives only at run time.
+case1:
+-Array is an object
+-so class of that array-object are the part of internal java language.
+-so corrusponding class of the that array object is find by =>"sop(arr.getClass().getName());"
+
+case2:
+-Empty array creation not possible, it must to give some value.
+ex:- int[] arr=new int[size];  // size is must to give.
+
+case3:
+-we can't give the negetive size
+ex: int[] arr=new int[-3]; // Runtime exception:Negetive array size exception.
+
+case4: 
+-which type we use to declare the array size.
+type-casting
+byte=>short=>char=>int=>long=>float=>double.
+ex:
+all are valid
+int[] arr=new int[int];
+int[] arr=new int[char];
+int[] arr=new int[short];
+int[] arr=new int[byte];
+
+follwing are invalid 
+int[] arr=new int[long];//compile time error:possible loss of ressetion found:long require:int.
+
+case5:
+-max size of array:
+int[] arr=new int[2147483647];//valid(memory requirement: 2147483647*4=?)
+int[] arr=new int[2147483647];//invalid: compile time error: int no to large.
+
+case6:
+-when we create array automatically every array element intialized with default value '0'.
+
+case7:
+-whenever we trying to print any reference variable internally toString() method will be called.
+ex:-
+sop(arr);//output=classname@hashcode_in_hexform
+
+case8:
+-If we are trying to acces array element out-of range index(either +ve, -ve, int value) then we
+will get Runtime Exception:Array index out of bound exception
+Two dimentional Array:
+-------------------------------------------------------
+int[][] arr; //Recommended way of declaration becouse name is clearly separated from type.
+int [][]arr;
+int  arr[][];
+int[]arr[];
+int[] []arr;
+int  []arr[];
+
+
+Dimension specification:(Remaining)
+-------------------------------------------------------
+
+3Dimentional array:
+-------------------------------------------------------
+int [][][] arr; //Recommended way 
+
+Two dimentional array:(matrix=group of rows and column's)
+-------------------------------------------------------
+-In java two dimentional array not represent in matrix style.
+-some people use array of arrays approch for multidimentional array creation.
+advantages of this approch is memory utilization will be improved.
+
+example1: Array of arrays
+int[][] arr=new int[2][];
+arr[0]=new int[2];
+arr[1]=new int[3];
+
+example2: Array of arrays
+int[][][] arr=new int[2 ][][];
+arr[0]=new int[3];      |   arr[1]=new int[2];
+arr[0][0]=new int[1];   |   arr[1][0]=new int[2];
+arr[0][1]=new int[2];   |   arr[1][1]=new int[2];
+arr[0][2]=new int[3];   |
+
+Array declaration, creation and intialization
+--------------------------------------------------------
+Long Representation
+first way:
+int[] arr; //Declaration
+arr=new int[3]; //creation
+arr[0]=10;|
+arr[1]=11;| //Initialization
+arr[2]=12;|
+
+Short Representation
+second way:
+ int[] arr={1,2,3};
+ char[] arr={'s','a','g','a','r'};
+ String[] arr={"sagar","Ankita","Rajendra","Gujar"};
+ 
+ we can use this aproch for multidimentional array
+ ex.1:Two dimentional Array
+ int[][] arr={{10,20},{30,40,50}};
+ 
+ ex:2:Three dimentional Array
+ int[][][] arr={{{10,20,30},{20,50,60}},{{70,80},{90,100,120}}};
+ sop(x[0][1][2]); //60
+ sop(x[1][0][1]); //80
+ sop(x[1][1][1]); //100
+ sop(x[2][1][1]); //RE:Array index out-off bounds exception.
+ 
+ Difference between length and length():
+ -----------------------------------------------------------
+ length: Is a final variable, use for find the length of array.
+ length(): Is a final method() of String class, use for find the length of String-object.
+ 
+case1: In multidimentional array
+length: lenght variable represent only base size of multidimentional array.
+
+Ananymus Array:
+-------------------------------------------------------------
+-We declaire array without name, such type of nameless array are called as Ananymus Array.
+-main purpose of ananymus array is just for instant use(one time use).
+Syntax: new int[] {10,20,30};
+-while creating ananymus array we can't give size, otherwise we will get compile time error.
+-we can create multidimentional ananymus array:
+Syntax: new int[][] {{10,20},{10,20,30}};
+-Base on our requirement we can give the name for ananymus array, then it is no longer ananymus.
+ex: int[] arr=new int[] {10,20,30};
+
+Ananymus array use:
+ex:
+public class Ananymus {
+
+	public static void main(String[] args) {
+		sum(new int[] {10,20,30});
+	}
+
+	public static void sum(int[] x) {
+		int total=0;
+		for(int x1:x)
+		{
+			total=total+x1;
+		}
+		System.out.println("the sum: "+ total);
+	}
+
+}
+-In above method just call to sum method we required array, But after completing sum method() called we are
+not using that array any more.
+	Hence for this one time requirement we can use ananymus array. and here ananymus array is best choice.
+	
+Array Elements Assignments:
+---------------------------------------------------------------------
+case1:
+In case of primitive type array, as a array element we can provide which can implicitly promoted to declare type.
+ex:int[] x=new int[5];
+x[0]=10;//valid
+x[1]='a';//valid
+byte b=20;
+x[2]=b;//valid
+short s=30;
+x[3]=s;//valid
+x[4]=10l;//CE:possible loss of precision, found:long, required:int.
+
+case2:
+In the case of float type array, following data types are allowd:
+byte=>short=char=>int=>float
+
+case3:
+In the case of object type arrays, in that array element declaire either object type or it's child type.
+ex:object[] arr=new object[10];
+	a[0]=new Object();//valid
+	a[1]=new String();//valid
+	a[2]=new Integer(10);//valid
+	
+ex:In the Number class contains follwing child classes.
+   1.Byte
+   2.Short
+   3.Char
+   4.Int
+   5.Float
+   6.Double
+   7.Long
+ Number[] n=new Number[10];
+ n[0]=new Integer(10);//valid
+ n[1]=new Double(10.5);//valid
+ n[2]=new String("Durga");//Not valid becoz String is not child of Number.
+ 
+ case4:
+ For interface type array, as array elements it's implementation class type are allowd.
+ ex:
+ Runnable [] r=new runnable[10];//valid
+ r[0]=new Thread();//valid
+ 
+ Array Variable Assignment:
+ ---------------------------------------------------------------
+ case1:
+ Element level promotion are not applicable at array level.
+ ex:
+ char=>int    //valid
+ char[]=>int[]  //not valid
+ -object level we can't promotion to anather class object.
+ 
+ case2:
+ find following correction are correct or not.
+ 1.)char=>int  //valid
+ 2.)char[]=>int[]  //not valid
+ 3.)int=>double  //valid
+ 4.)int[]=>double[] //not valid
+ 5.float=>int //not valid
+ case3:
+ But  in the case of Object type array, child class type array we can promoted into parrent class type array
+ String=>object[]  //valid
+ String[]=>Object[] //valid
+ ex1:
+ String[] s={"sagar","shilpa"};
+ Object[] a=s;
+ ex2:
+ Double[] d={10.4,11.5,45.5,11.2,15.23};
+ Number[] n=d;
+ 
+ *Element level promotion=possible
+ *Array level promotion=not possible
+ *child class object to parent class object=possible
+ 
+ case3:
+ Whenever we are assigning one array to anather array, that time internal element won't be copied just reference variable reassign.
+ 
+ case4:
+ Whenever we are assigning one array to anather array, both dimension and data type must be matched, but sizes are not required to match.
